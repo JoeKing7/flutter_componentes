@@ -19,4 +19,4 @@ class _MenuProvider {
   }
 }
 
-final menuProvider = new _MenuProvider();
+final menuProvider = _MenuProvider();

@@ -13,7 +13,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: SafeArea(
             child: Center(
-                child: Text('Componentes', style: TextStyle(fontSize: 25.0)))),
+                child: Text('Componentes', style: TextStyle(fontSize: 25.0)))
+        ),
         backgroundColor: color,
       ),
       body: _lista(),
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
     // menuProvider.cargarData();
     return FutureBuilder(
       future: menuProvider.cargarData(),
-      initialData: [],
+      initialData: const [],
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         return ListView(
           children: _listaItems(snapshot.data!, context),
@@ -35,11 +36,11 @@ class HomePage extends StatelessWidget {
 
   List<Widget> _listaItems(List<dynamic> data, BuildContext context) {
     final List<Widget> opciones = [];
-    data.forEach((opt) {
+    for (var opt in data) {
       final widgetTemp = ListTile(
         title: Text(opt['texto']),
         leading: getIcon(opt['icon']),
-        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.deepOrange),
+        trailing: const Icon(Icons.keyboard_arrow_right, color: Colors.deepOrange),
         onTap: () {
           Navigator.pushNamed(context, opt['ruta']);
 
@@ -47,8 +48,8 @@ class HomePage extends StatelessWidget {
           // Navigator.push(context, route);
         },
       );
-      opciones..add(widgetTemp)..add(Divider());
-    });
+      opciones..add(widgetTemp)..add(const Divider());
+    }
 
     return opciones;
   }
